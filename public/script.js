@@ -1,12 +1,12 @@
 // Fetch the default user profile
-fetch("/users")
+fetch("/user")
   .then((response) => response.json())
   .then((data) => {
     document.getElementById("name").value = data.name;
     document.getElementById("interests").value = data.interests;
     document.getElementById("role").value = data.role;
   })
-  .catch((error) => console.error("Error:", error));
+  .catch((error) => console.error("Error fetching user profile:", error));
 
 // Enable editing
 document.getElementById("editButton").addEventListener("click", () => {
@@ -26,7 +26,7 @@ document.getElementById("profileForm").addEventListener("submit", (event) => {
   const interests = document.getElementById("interests").value;
   const role = document.getElementById("role").value;
 
-  fetch("/users", {
+  fetch("/user", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -43,5 +43,5 @@ document.getElementById("profileForm").addEventListener("submit", (event) => {
       document.getElementById("saveButton").style.display = "none";
       alert("Profile updated successfully!");
     })
-    .catch((error) => console.error("Error:", error));
+    .catch((error) => console.error("Error saving user profile:", error));
 });
